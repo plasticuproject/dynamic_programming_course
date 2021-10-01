@@ -1,12 +1,15 @@
 """fib_memoization.py"""
 from functools import lru_cache
-from typing import Optional
+from typing import Optional, Dict
 
 
 # Iterative method
 def fib(_n: int) -> int:
     """Iterative method for calculating
     nth fibonacci number."""
+    _a: int
+    _b: int
+    _c: int
     if _n <= 2:
         return 1
     _a, _b, _c = 1, 1, 0
@@ -29,12 +32,13 @@ def fib_recur_builtin_memo(_n: int) -> int:
 
 
 # Recursive using custom memoization
-def fib_recur_custom_memo(_n: int, memo: Optional[dict] = None) -> int:
+def fib_recur_custom_memo(_n: int,
+                          memo: Optional[Dict[int, int]] = None) -> int:
     """Recursive method for calculating nth fibonacci
     number using custom function cacheing for
     memoization."""
     if memo is None:
-        memo: dict = {}
+        memo: Dict[int, int] = dict()
     if _n in memo:
         return memo[_n]
     if _n <= 2:
