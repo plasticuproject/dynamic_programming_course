@@ -34,13 +34,13 @@ def fib_recur_custom_memo(_n: int, memo: Optional[dict] = None) -> int:
     number using custom function cacheing for
     memoization."""
     if memo is None:
-        memo = {}
+        memo: dict = {}
     if _n in memo:
         return memo[_n]
     if _n <= 2:
         return 1
-    memo[_n] = fib_recur_custom_memo(
-        _n - 1, memo=memo) + fib_recur_custom_memo(_n - 2, memo=memo)
+    memo[_n]: int = fib_recur_custom_memo(
+        _n - 1, memo) + fib_recur_custom_memo(_n - 2, memo)
     return memo[_n]
 
 
