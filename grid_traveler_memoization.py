@@ -18,8 +18,8 @@ Write a function 'grid_traveler(m, n)' that calculates this.
 # Recursive solution using built-in memoization
 @lru_cache(maxsize=None)
 def grid_traveler_builtin_memo(_m: int, _n: int) -> int:
-    """Recursive method for solving problem using pythons
-    built-in function cacheing for memoization."""
+    """Recursive method for solving problem using python's
+    built-in function caching for memoization."""
     if _m == 1 and _n == 1:
         return 1
     if _m == 0 or _n == 0:
@@ -33,7 +33,7 @@ def grid_traveler_custom_memo(_m: int,
                               _n: int,
                               memo: Optional[Dict[int, int]] = None) -> int:
     """Recursive method for solving problem using custom
-    function cacheing for memoization."""
+    function caching for memoization."""
     position: tuple = (_m, _n)
     trans_postion: tuple = (_n, _m)
     if memo is None:
