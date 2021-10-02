@@ -40,7 +40,7 @@ def can_sum_custom_memo(target_sum: int,
                         memo: Optional[Dict[int, bool]] = None) -> bool:
     """Recursive method for solving problem using custom
     function caching for memoization."""
-    number_set: List[Set[int]] = set(numbers)
+    number_set: Set[int] = set(numbers)
     if memo is None:
         memo: Dict[int, bool] = dict()
     if target_sum in memo:
