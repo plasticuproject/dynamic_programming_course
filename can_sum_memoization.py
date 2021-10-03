@@ -19,7 +19,7 @@ You may assume that all input numbers are non-negative.
 @lru_cache(maxsize=None)
 def can_sum_builtin_memo(target_sum: int, numbers: Tuple[int]) -> bool:
     """Recursive method for solving problem using python's
-    built-in function cacheing for memoization. Had to change
+    built-in function caching for memoization. Had to change
     second argument from list to tuple type for hashing."""
     number_set: Set[int] = set(numbers)
     if target_sum < 0:

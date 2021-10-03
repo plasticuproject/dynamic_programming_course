@@ -24,7 +24,7 @@ def fib(_n: int) -> int:
 @lru_cache(maxsize=None)
 def fib_recur_builtin_memo(_n: int) -> int:
     """Recursive method for calculating nth fibonacci
-    number using pythons built in function cacheing
+    number using pythons built in function caching
     for memoization."""
     if _n <= 2:
         return 1
@@ -35,7 +35,7 @@ def fib_recur_builtin_memo(_n: int) -> int:
 def fib_recur_custom_memo(_n: int,
                           memo: Optional[Dict[int, int]] = None) -> int:
     """Recursive method for calculating nth fibonacci
-    number using custom function cacheing for
+    number using custom function caching for
     memoization."""
     if memo is None:
         memo: Dict[int, int] = dict()
