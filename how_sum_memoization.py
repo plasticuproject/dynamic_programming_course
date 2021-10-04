@@ -1,6 +1,6 @@
 """how_sum_memoization.py"""
 from functools import lru_cache
-from typing import List, Dict, Union, Optional
+from typing import List, Dict, Union, Optional, Tuple
 """
 PROBLEM:
 
@@ -18,7 +18,7 @@ single one.
 
 @lru_cache(maxsize=None)
 def how_sum_builtin_memo(target_sum: int,
-                         numbers: List[int]) -> Union[List[int], None]:
+                         numbers: Tuple[int]) -> Union[Tuple[int], None]:
     """Recursive method for solving problem using python's
     built-in function caching for memoization. Had to change
     second argument and return from list to tuple type for hashing."""
@@ -29,7 +29,7 @@ def how_sum_builtin_memo(target_sum: int,
         return (target_sum, )
     for num in numbers:
         new_target_sum: int = target_sum - num
-        adders: Union[List[int],
+        adders: Union[Tuple[int],
                       None] = how_sum_builtin_memo(new_target_sum,
                                                    tuple(numbers))
         if adders is not None:
