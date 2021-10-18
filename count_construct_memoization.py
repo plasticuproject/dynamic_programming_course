@@ -14,7 +14,7 @@ You may reuse elements of 'word_bank' as many times as needed.
 """
 
 
-def count_construct(target: int, word_bank: List[int]) -> int:
+def count_construct(target: str, word_bank: List[str]) -> int:
     """Recursive method for solving problem using no caching
     or memoization."""
     count: int = 0
@@ -28,7 +28,7 @@ def count_construct(target: int, word_bank: List[int]) -> int:
 
 
 @lru_cache(maxsize=None)
-def count_construct_builtin_memo(target: int, word_bank: Tuple[int]) -> int:
+def count_construct_builtin_memo(target: str, word_bank: Tuple[str]) -> int:
     """Recursive method for solving problem using python's
     built-in function caching for memoization. Had to change
     second argument from list to tuple type for hashing."""
@@ -42,14 +42,14 @@ def count_construct_builtin_memo(target: int, word_bank: Tuple[int]) -> int:
     return count
 
 
-def count_construct_custom_memo(target: int,
-                                word_bank: List[int],
+def count_construct_custom_memo(target: str,
+                                word_bank: List[str],
                                 memo: Optional[Dict[str, int]] = None) -> int:
     """Recursive method for solving problem using custom
     function caching for memoization."""
     count: int = 0
     if memo is None:
-        memo: Dict[List[str, int]] = dict()
+        memo = dict()
     if target in memo:
         return memo[target]
     if target == "":

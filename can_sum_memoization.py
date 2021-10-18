@@ -42,7 +42,7 @@ def can_sum_custom_memo(target_sum: int,
     function caching for memoization."""
     number_set: Set[int] = set(numbers)
     if memo is None:
-        memo: Dict[int, bool] = dict()
+        memo = dict()
     if target_sum in memo:
         return memo[target_sum]
     if target_sum < 0:
@@ -54,9 +54,9 @@ def can_sum_custom_memo(target_sum: int,
     for num in number_set:
         new_target_sum: int = target_sum - num
         if can_sum_custom_memo(new_target_sum, list(number_set), memo) is True:
-            memo[target_sum]: bool = True
+            memo[target_sum] = True
             return True
-    memo[target_sum]: bool = False
+    memo[target_sum] = False
     return False
 
 

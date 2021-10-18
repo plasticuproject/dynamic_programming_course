@@ -1,6 +1,6 @@
 """grid_traveler_memoization.py"""
 from functools import lru_cache
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
 """
 PROBLEM:
 
@@ -29,27 +29,28 @@ def grid_traveler_builtin_memo(_m: int, _n: int) -> int:
 
 
 # Recursive solution using custom memoization
-def grid_traveler_custom_memo(_m: int,
-                              _n: int,
-                              memo: Optional[Dict[int, int]] = None) -> int:
+def grid_traveler_custom_memo(
+        _m: int,
+        _n: int,
+        memo: Optional[Dict[Tuple[int, int], int]] = None) -> int:
     """Recursive method for solving problem using custom
     function caching for memoization."""
-    position: tuple = (_m, _n)
-    trans_postion: tuple = (_n, _m)
+    position: Tuple[int, int] = (_m, _n)
+    trans_postion: Tuple[int, int] = (_n, _m)
     if memo is None:
-        memo: Dict[int, int] = dict()
+        memo = dict()
     if position in memo:
         return memo[position]
     if trans_postion in memo:
         return memo[trans_postion]
     if _m == 1 and _n == 1:
-        memo[position]: int = 1
+        memo[position] = 1
         return 1
     if _m == 0 or _n == 0:
-        memo[position]: int = 0
+        memo[position] = 0
         return 0
-    memo[position]: int = (grid_traveler_custom_memo(_m - 1, _n, memo) +
-                           grid_traveler_custom_memo(_m, _n - 1, memo))
+    memo[position] = (grid_traveler_custom_memo(_m - 1, _n, memo) +
+                      grid_traveler_custom_memo(_m, _n - 1, memo))
     return memo[position]
 
 

@@ -1,6 +1,6 @@
 """how_sum_memoization.py"""
 from functools import lru_cache
-from typing import List, Dict, Union, Optional, Tuple
+from typing import List, Dict, Optional, Tuple
 """
 PROBLEM:
 
@@ -18,35 +18,35 @@ single one.
 
 @lru_cache(maxsize=None)
 def how_sum_builtin_memo(target_sum: int,
-                         numbers: Tuple[int]) -> Union[Tuple[int], None]:
+                         numbers: Tuple[int]) -> Optional[Tuple[int, ...]]:
     """Recursive method for solving problem using python's
     built-in function caching for memoization. Had to change
     second argument and return from list to tuple type for hashing."""
-    numbers = list(numbers)
+    numbers_list: List[int] = list(numbers)
     if target_sum < 0:
         return None
-    if target_sum in numbers or target_sum == 0:
+    if target_sum in numbers_list or target_sum == 0:
         return (target_sum, )
-    for num in numbers:
+    for num in numbers_list:
         new_target_sum: int = target_sum - num
-        adders: Union[Tuple[int],
-                      None] = how_sum_builtin_memo(new_target_sum,
-                                                   tuple(numbers))
+        adders: Optional[Tuple[int, ...]] = how_sum_builtin_memo(
+            new_target_sum, tuple(numbers_list))
         if adders is not None:
-            adders: List[int] = list(adders)
-            adders.append(num)
-            return tuple(adders)
+            adders_list: List[int] = list(adders)
+            adders_list.append(num)
+            return tuple(adders_list)
     return None
 
 
 def how_sum_custom_memo(
-        target_sum: int,
-        numbers: List[int],
-        memo: Optional[Dict[int, List[int]]] = None) -> Union[List[int], None]:
+    target_sum: int,
+    numbers: List[int],
+    memo: Optional[Dict[int,
+                        Optional[List[int]]]] = None) -> Optional[List[int]]:
     """Recursive method for solving problem using custom
     function caching for memoization."""
     if memo is None:
-        memo: Dict[int, List[int]] = dict()
+        memo = dict()
     if target_sum < 0:
         return None
     if target_sum in numbers or target_sum == 0:
@@ -55,14 +55,13 @@ def how_sum_custom_memo(
         return memo[target_sum]
     for num in numbers:
         new_target_sum: int = target_sum - num
-        adders: Union[List[int],
-                      None] = how_sum_custom_memo(new_target_sum, numbers,
-                                                  memo)
+        adders: Optional[List[int]] = how_sum_custom_memo(
+            new_target_sum, numbers, memo)
         if adders is not None:
             adders.append(num)
-            memo[new_target_sum]: List[int] = adders
+            memo[new_target_sum] = adders
             return adders
-    memo[target_sum]: None = None
+    memo[target_sum] = None
     return None
 
 

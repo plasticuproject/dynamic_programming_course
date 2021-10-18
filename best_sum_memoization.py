@@ -1,6 +1,6 @@
 """best_sum_memoization.py"""
 from functools import lru_cache
-from typing import List, Union, Tuple, Dict, Optional
+from typing import List, Tuple, Dict, Optional
 """
 PROBLEM:
 
@@ -15,17 +15,17 @@ one of the shortest.
 """
 
 
-def best_sum(target_sum: int, numbers: List[int]) -> Union[List[int], None]:
+def best_sum(target_sum: int, numbers: List[int]) -> Optional[List[int]]:
     """Recursive method for solving problem using no caching
     or memoization."""
     if target_sum < 0:
         return None
     if target_sum in numbers or target_sum == 0:
         return [target_sum]
-    shortest_combo: Union[None, List[int]] = None
+    shortest_combo: Optional[List[int]] = None
     for num in numbers:
         new_target_sum: int = target_sum - num
-        adders: Union[List[int], None] = best_sum(new_target_sum, numbers)
+        adders: Optional[List[int]] = best_sum(new_target_sum, numbers)
         if adders is not None:
             combo: List[int] = adders.copy()
             combo.insert(0, num)
@@ -36,24 +36,23 @@ def best_sum(target_sum: int, numbers: List[int]) -> Union[List[int], None]:
 
 @lru_cache(maxsize=None)
 def best_sum_builtin_memo(target_sum: int,
-                          numbers: Tuple[int]) -> Union[List[int], None]:
+                          numbers: Tuple[int]) -> Optional[Tuple[int, ...]]:
     """Recursive method for solving problem using python's
     built-in function caching for memoization. Had to change
     second argument and return from list to tuple type for hashing."""
-    numbers: List[int] = list(numbers)
+    numbers_list: List[int] = list(numbers)
     if target_sum < 0:
         return None
-    if target_sum in numbers or target_sum == 0:
+    if target_sum in numbers_list or target_sum == 0:
         return (target_sum, )
-    shortest_combo: Union[None, List[int]] = None
-    for num in numbers:
+    shortest_combo: Optional[List[int]] = None
+    for num in numbers_list:
         new_target_sum: int = target_sum - num
-        adders: Union[Tuple[int],
-                      None] = best_sum_builtin_memo(new_target_sum,
-                                                    tuple(numbers))
+        adders: Optional[Tuple[int, ...]] = best_sum_builtin_memo(
+            new_target_sum, tuple(numbers_list))
         if adders is not None:
-            adders: List[int] = list(adders)
-            combo: List[int] = adders.copy()
+            adders_list: List[int] = list(adders)
+            combo: List[int] = adders_list.copy()
             combo.insert(0, num)
             if shortest_combo is None or len(combo) < len(shortest_combo):
                 shortest_combo = combo
@@ -63,25 +62,25 @@ def best_sum_builtin_memo(target_sum: int,
 
 
 def best_sum_custom_memo(
-        target_sum: int,
-        numbers: List[int],
-        memo: Optional[Dict[int, List[int]]] = None) -> Union[List[int], None]:
+    target_sum: int,
+    numbers: List[int],
+    memo: Optional[Dict[int,
+                        Optional[List[int]]]] = None) -> Optional[List[int]]:
     """Recursive method for solving problem using custom
     function caching for memoization."""
     if memo is None:
-        memo: Dict[int, List[int]] = dict()
+        memo = dict()
     if target_sum in memo:
         return memo[target_sum]
     if target_sum < 0:
         return None
     if target_sum in numbers or target_sum == 0:
         return [target_sum]
-    shortest_combo: Union[None, List[int]] = None
+    shortest_combo: Optional[List[int]] = None
     for num in numbers:
         new_target_sum: int = target_sum - num
-        adders: Union[List[int],
-                      None] = best_sum_custom_memo(new_target_sum, numbers,
-                                                   memo)
+        adders: Optional[List[int]] = best_sum_custom_memo(
+            new_target_sum, numbers, memo)
         if adders is not None:
             combo: List[int] = adders.copy()
             combo.insert(0, num)

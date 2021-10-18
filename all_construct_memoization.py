@@ -58,7 +58,7 @@ def all_construct_custom_memo(
     function caching for memoization."""
     construct_list: List[List[str]] = list()
     if memo is None:
-        memo: Dict[str, List[List[str]]] = dict()
+        memo = dict()
     if target in memo:
         return memo[target]
     if target == "":

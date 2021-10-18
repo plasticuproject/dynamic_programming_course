@@ -49,7 +49,7 @@ def can_construct_custom_memo(target: str,
     """Recursive method for solving problem using custom
     function caching for memoization."""
     if memo is None:
-        memo: Dict[str, bool] = dict()
+        memo = dict()
     if target in memo:
         return memo[target]
     if target == "":
