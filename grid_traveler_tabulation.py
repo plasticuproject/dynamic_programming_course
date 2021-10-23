@@ -13,15 +13,18 @@ with dimenstions m * n?
 Write a function 'grid_traveler(m, n)' that calculates this.
 """
 
-
+# Recursive method for reference
+'''
 def grid_traveler_recursive(_m: int, _n: int) -> int:
-    """Recursive method for solving problem."""
+    """Recursive method for solving problem using no
+    cashing or memoization."""
     if _m == 1 and _n == 1:
         return 1
     if _m == 0 or _n == 0:
         return 0
     return (grid_traveler_recursive(_m - 1, _n) +
             grid_traveler_recursive(_m, _n - 1))
+'''
 
 
 def grid_traveler(_m: int, _n: int) -> int:

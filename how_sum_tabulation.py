@@ -14,10 +14,12 @@ If there are multiple combinations possible, you may return any
 single one.
 """
 
-
+# Recursive method for reference
+'''
 def how_sum_recursive(target_sum: int,
                       numbers: List[int]) -> Optional[List[int]]:
-    """Recursive method for solving problem."""
+    """Recursive method for solving problem using no caching
+    or memoization."""
     if target_sum < 0:
         return None
     if target_sum in numbers or target_sum == 0:
@@ -30,6 +32,7 @@ def how_sum_recursive(target_sum: int,
             adders.append(num)
             return adders
     return None
+'''
 
 
 def how_sum(target_sum: int, numbers: List[int]) -> Optional[List[int]]:
@@ -42,10 +45,10 @@ def how_sum(target_sum: int, numbers: List[int]) -> Optional[List[int]]:
     for i in range(target_sum):
         if table[i] is not None:
             for num in numbers:
-                current: int = i + num
-                if current <= target_sum:
-                    table[current] = table[i].copy()
-                    table[current].append(num)
+                advance: int = i + num
+                if advance <= target_sum:
+                    table[advance] = table[i].copy()
+                    table[advance].append(num)
     target_sum_list: Optional[List[int]] = table[target_sum]
     return target_sum_list
 

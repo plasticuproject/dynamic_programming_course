@@ -13,7 +13,8 @@ If there is a tie for the shortest combination, you may return any
 one of the shortest.
 """
 
-
+# Recursive method for reference
+'''
 def best_sum_recursive(target_sum: int,
                        numbers: List[int]) -> Optional[List[int]]:
     """Recursive method for solving problem using no caching
@@ -33,6 +34,7 @@ def best_sum_recursive(target_sum: int,
             if shortest_combo is None or len(combo) < len(shortest_combo):
                 shortest_combo = combo
     return shortest_combo
+'''
 
 
 def best_sum(target_sum: int, numbers: List[int]) -> Optional[List[int]]:
@@ -43,12 +45,12 @@ def best_sum(target_sum: int, numbers: List[int]) -> Optional[List[int]]:
     for i in range(target_sum):
         if table[i] is not None:
             for num in numbers:
-                current: int = i + num
-                if current <= target_sum:
-                    if not table[current] or len(table[i]) + 1 < len(
-                            table[current]):
-                        table[current] = table[i].copy()
-                        table[current].append(num)
+                advance: int = i + num
+                if advance <= target_sum:
+                    if not table[advance] or len(table[i]) + 1 < len(
+                            table[advance]):
+                        table[advance] = table[i].copy()
+                        table[advance].append(num)
     target_sum_list: Optional[List[int]] = table[target_sum]
     return target_sum_list
 

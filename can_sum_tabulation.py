@@ -14,9 +14,11 @@ You may use an element of the array as many times as needed.
 You may assume that all input numbers are non-negative.
 """
 
-
+# Recursive method for reference
+'''
 def can_sum_recursive(target_sum: int, numbers: List[int]) -> bool:
-    """Recursive method for solving problem."""
+    """Recursive method for solving problem using no caching
+    or memoization."""
     number_set: Set[int] = set(numbers)
     if target_sum < 0:
         return False
@@ -29,6 +31,7 @@ def can_sum_recursive(target_sum: int, numbers: List[int]) -> bool:
         if can_sum_recursive(new_target_sum, list(number_set)) is True:
             return True
     return False
+'''
 
 
 def can_sum(target_sum: int, numbers: List[int]) -> bool:
