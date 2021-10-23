@@ -21,7 +21,7 @@ def best_sum_recursive(target_sum: int,
     or memoization."""
     if target_sum < 0:
         return None
-    if target_sum in numbers or target_sum == 0:
+    if target_sum in numbers:
         return [target_sum]
     shortest_combo: Optional[List[int]] = None
     for num in numbers:

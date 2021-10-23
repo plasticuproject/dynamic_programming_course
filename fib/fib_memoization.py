@@ -14,7 +14,7 @@ def fib(_n: int) -> int:
     if _n <= 2:
         return 1
     _a, _b, _c = 1, 1, 0
-    for i in range(_n - 2):  # pylint: disable=unused-variable
+    for _ in range(_n - 2):
         _c = _a + _b
         _a = _b
         _b = _c

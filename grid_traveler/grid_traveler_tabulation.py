@@ -30,7 +30,7 @@ def grid_traveler_recursive(_m: int, _n: int) -> int:
 def grid_traveler(_m: int, _n: int) -> int:
     """Iterive method for solving problem using
     tabulation."""
-    table: List[List[int]] = [[0] * (_n + 1) for i in range(_m + 1)]
+    table: List[List[int]] = [[0] * (_n + 1) for _ in range(_m + 1)]
     table[1][1] = 1
     for i in range(_m + 1):
         for j in range(_n + 1):

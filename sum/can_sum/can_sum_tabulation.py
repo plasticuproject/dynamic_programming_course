@@ -22,7 +22,7 @@ def can_sum_recursive(target_sum: int, numbers: List[int]) -> bool:
     number_set: Set[int] = set(numbers)
     if target_sum < 0:
         return False
-    if target_sum in number_set or target_sum == 0:
+    if target_sum in number_set:
         return True
     if (1 in number_set) or (2 in number_set and target_sum % 2 == 0):
         return True
