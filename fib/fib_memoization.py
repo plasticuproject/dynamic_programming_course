@@ -3,7 +3,6 @@ from functools import lru_cache
 from typing import Optional, Dict
 
 
-# Iterative method
 def fib(_n: int) -> int:
     """Iterative method for calculating
     nth Fibonacci number."""
@@ -22,7 +21,6 @@ def fib(_n: int) -> int:
     return _c
 
 
-# Recursive using built-in memoization
 @lru_cache(maxsize=None)
 def fib_recur_builtin_memo(_n: int) -> int:
     """Recursive method for calculating nth Fibonacci
@@ -35,7 +33,6 @@ def fib_recur_builtin_memo(_n: int) -> int:
     return fib_recur_builtin_memo(_n - 1) + fib_recur_builtin_memo(_n - 2)
 
 
-# Recursive using custom memoization
 def fib_recur_custom_memo(_n: int,
                           memo: Optional[Dict[int, int]] = None) -> int:
     """Recursive method for calculating nth Fibonacci

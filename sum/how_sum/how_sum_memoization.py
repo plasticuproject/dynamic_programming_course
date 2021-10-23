@@ -25,7 +25,7 @@ def how_sum_builtin_memo(target_sum: int,
     numbers_list: List[int] = list(numbers)
     if target_sum < 0:
         return None
-    if target_sum in numbers_list or target_sum == 0:
+    if target_sum in numbers_list:
         return (target_sum, )
     for num in numbers_list:
         new_target_sum: int = target_sum - num
@@ -49,7 +49,7 @@ def how_sum_custom_memo(
         memo = dict()
     if target_sum < 0:
         return None
-    if target_sum in numbers or target_sum == 0:
+    if target_sum in numbers:
         return [target_sum]
     if target_sum in memo:
         return memo[target_sum]

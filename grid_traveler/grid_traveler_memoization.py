@@ -15,7 +15,6 @@ Write a function 'grid_traveler(m, n)' that calculates this.
 """
 
 
-# Recursive solution using built-in memoization
 @lru_cache(maxsize=None)
 def grid_traveler_builtin_memo(_m: int, _n: int) -> int:
     """Recursive method for solving problem using python's
@@ -28,7 +27,6 @@ def grid_traveler_builtin_memo(_m: int, _n: int) -> int:
             grid_traveler_builtin_memo(_m, _n - 1))
 
 
-# Recursive solution using custom memoization
 def grid_traveler_custom_memo(
         _m: int,
         _n: int,

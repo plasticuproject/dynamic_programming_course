@@ -20,7 +20,7 @@ def best_sum(target_sum: int, numbers: List[int]) -> Optional[List[int]]:
     or memoization."""
     if target_sum < 0:
         return None
-    if target_sum in numbers or target_sum == 0:
+    if target_sum in numbers:
         return [target_sum]
     shortest_combo: Optional[List[int]] = None
     for num in numbers:
@@ -43,7 +43,7 @@ def best_sum_builtin_memo(target_sum: int,
     numbers_list: List[int] = list(numbers)
     if target_sum < 0:
         return None
-    if target_sum in numbers_list or target_sum == 0:
+    if target_sum in numbers_list:
         return (target_sum, )
     shortest_combo: Optional[List[int]] = None
     for num in numbers_list:
@@ -74,7 +74,7 @@ def best_sum_custom_memo(
         return memo[target_sum]
     if target_sum < 0:
         return None
-    if target_sum in numbers or target_sum == 0:
+    if target_sum in numbers:
         return [target_sum]
     shortest_combo: Optional[List[int]] = None
     for num in numbers:
